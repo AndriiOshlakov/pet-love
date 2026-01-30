@@ -21,7 +21,9 @@ export default function Page() {
       if (value >= 100) {
         clearInterval(interval);
         setLoading(false);
-        router.push('/home');
+        setTimeout(() => {
+          router.replace('/home'); // ✅ тільки тут
+        }, 1000);
       }
     }, 300);
 

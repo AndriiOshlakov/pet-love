@@ -15,6 +15,8 @@ export default function Loader() {
       }, 1000);
 
       return () => clearTimeout(timer);
+    } else {
+      setVisible(true);
     }
   }, [loading]);
 
