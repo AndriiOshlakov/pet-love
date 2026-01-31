@@ -1,3 +1,9 @@
+import Container from '@/components/Container/Container';
+
 export default function Friends() {
-  return <h1>Friends</h1>;
+  return (
+    <Container>
+      <h1>Friends</h1>
+    </Container>
+  );
 }
