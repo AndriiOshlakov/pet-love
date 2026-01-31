@@ -30,8 +30,8 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/find-pet"
-                className={`${isHome ? css.linkHome : css.link} ${pathname === '/find-pet' ? css.active : ''}`}
+                href="/notices"
+                className={`${isHome ? css.linkHome : css.link} ${pathname === '/notices' ? css.active : ''}`}
               >
                 Find pet
               </Link>
