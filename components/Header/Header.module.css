@@ -21,6 +21,84 @@
     .containerHome {
         max-width: 375px;
         padding: 10px 20px 20px;
+        margin-bottom: -102px;
+        z-index: 5;
+    }
+
+    .header {
+        padding: 18px 0;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+    }
+
+    .headerHome {
+        padding: 18px 20px;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo,
+    .logoHome {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: #262626;
+        margin-right: auto;
+    }
+
+    .logoHome {
+        color: #fff;
+    }
+
+    .icon {
+        width: 17px;
+        height: 17px;
+        fill: #f6b83d;
+        vertical-align: middle;
+    }
+
+    .iconHome {
+        width: 17px;
+        height: 17px;
+        fill: #fff;
+        vertical-align: middle;
+    }
+
+    .navList {
+        display: none;
+    }
+
+    .navListHome {
+        display: none;
+    }
+
+    .auth {
+        display: none;
+    }
+
+    .btn {
+        padding: 0;
+        margin-left: 12px;
+    }
+
+    .btnHome {
+        padding: 0;
+        margin-left: 12px;
+    }
+
+    .burger {
+        width: 32px;
+        height: 32px;
+        stroke: #262626;
+    }
+
+    .burgerHome {
+        width: 32px;
+        height: 32px;
+        stroke: #fff;
     }
 }
 
@@ -33,6 +111,108 @@
     .containerHome {
         max-width: 768px;
         padding: 16px 32px 32px;
+        margin-bottom: -132px;
+        z-index: 5;
+    }
+
+    .header {
+        padding: 16px 0;
+        background-color: transparent;
+    }
+
+    .headerHome {
+        padding: 16px 32px;
+        background-color: transparent;
+    }
+
+    .logo {
+        font-size: 28px;
+        margin-right: 0;
+    }
+
+    .logoHome {
+        font-size: 28px;
+        margin-right: 0;
+    }
+
+    .icon {
+        width: 23px;
+        height: 23px;
+    }
+
+    .iconHome {
+        width: 23px;
+        height: 23px;
+    }
+
+
+    .navListHome {
+        display: none;
+    }
+
+    .auth {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .login,
+    .loginHome,
+    .register,
+    .registerHome {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        padding: 15px 35px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+        background-color: #f6b83d;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .register,
+    .registerHome {
+        padding: 15px 20px;
+    }
+
+    .loginHome:hover,
+    .registerHome:hover {
+        color: #f6b83d;
+        background-color: #fff4df;
+    }
+
+    .login,
+    .register {
+        color: #f6b83d;
+        background-color: #fff4df;
+    }
+
+    .login:hover,
+    .register:hover {
+        background-color: #f6b83d;
+        color: #fff;
+    }
+
+    .btn {
+        margin-left: 16px;
+    }
+
+    .btnHome {
+        margin-left: 18px;
+    }
+
+    .burger {
+        width: 36px;
+        height: 36px;
+    }
+
+    .burgerHome {
+        width: 36px;
+        height: 36px;
     }
 }
 
@@ -49,47 +229,12 @@
 
     .header {
         padding: 16px 32px 32px;
-        border-color: transparent;
-        display: flex;
-        align-items: center;
     }
 
     .headerHome {
         padding: 16px 64px;
-        border-color: transparent;
-        display: flex;
-        align-items: center;
     }
 
-    .logoHome {
-        font-weight: 800;
-        font-size: 28px;
-        line-height: 1;
-        letter-spacing: -0.04em;
-        color: #fff;
-    }
-
-    .logo {
-        font-weight: 700;
-        font-size: 28px;
-        line-height: 1;
-        letter-spacing: -0.04em;
-        color: #262626;
-    }
-
-    .icon {
-        width: 23px;
-        height: 23px;
-        fill: #f6b83d;
-        vertical-align: middle;
-    }
-
-    .iconHome {
-        width: 23px;
-        height: 23px;
-        fill: #fff;
-        vertical-align: middle;
-    }
 
     .navList {
         display: flex;
@@ -175,25 +320,12 @@
         padding: 15px 20px;
     }
 
-    .login:hover,
-    .loginHome:hover,
-    .register:hover,
-    .registerHome:hover {
-        color: #f6b83d;
-        background-color: #fff4df;
+
+    .burger {
+        display: none;
     }
 
-    .login,
-    .register {
-        color: #f6b83d;
-        background-color: #fff4df;
+    .burgerHome {
+        display: none;
     }
-
-    .login:hover,
-    .register:hover {
-        background-color: #f6b83d;
-        color: #fff;
-    }
-
-
 }

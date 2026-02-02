@@ -1,11 +1,16 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Container from '../Container/Container';
 import css from './Header.module.css';
 import Link from 'next/link';
+import { useState } from 'react';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Header() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const toggleSidebarOpen = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   const pathname = usePathname();
   const isHome = pathname === '/home';
   return (
@@ -55,8 +60,13 @@ export default function Header() {
           </Link>
         </div>
         <div></div>
-        <button className={css.burger}></button>
+        <button onClick={toggleSidebarOpen} className={`${isHome ? css.btnHome : css.btn}`}>
+          <svg className={`${isHome ? css.burgerHome : css.burger}`}>
+            <use href="/symbol-defs.svg#burger" />
+          </svg>
+        </button>
       </section>
+      <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebarOpen} />
     </div>
   );
 }
