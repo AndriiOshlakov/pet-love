@@ -1,11 +1,33 @@
-import css from './News.module.css';
+import { QueryClient, dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { fetchNews } from '../../lib/api/serverApi';
+import NewsClient from './NewsClient.client';
+import { NewsRequestParams } from '@/types/News';
 
-import Container from '@/components/Container/Container';
+type Props = {
+  searchParams: Promise<NewsRequestParams>;
+};
 
-export default function News() {
+export default async function NewsPage({ searchParams }: Props) {
+  const { page = '1', keyword = '', limit = '6' } = await searchParams;
+
+  const currentPage = Number(page);
+  const currentLimit = Number(limit);
+
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['news', currentPage, keyword, currentLimit],
+    queryFn: () =>
+      fetchNews({
+        page: currentPage,
+        keyword,
+        limit: currentLimit,
+      }),
+  });
+
   return (
-    <Container>
-      <section>News page</section>
-    </Container>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <NewsClient page={currentPage} keyword={keyword} limit={currentLimit} />
+    </HydrationBoundary>
   );
 }

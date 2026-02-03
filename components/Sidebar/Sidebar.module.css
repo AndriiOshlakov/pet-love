@@ -132,20 +132,50 @@
         background-color: #fff;
     }
 
-    .loginHome:hover,
-    .registerHome:hover {
+    .loginHome,
+    .registerHome {
         color: #f6b83d;
-        background: #fff4df;
+        background-color: #fff4df;
     }
 
     .loginHome:hover,
     .registerHome:hover {
         color: #fff4df;
-        background: #f6b83d;
+        background-color: #f6b83d;
     }
 
 }
 
-@media screen and (min-width:768px) {}
+@media screen and (min-width:768px) {
 
-@media screen and (min-width:1280px) {}
+    .sidebar {
+        max-width: 374px;
+    }
+
+    .closeBtn {
+        top: 39px;
+        right: 32px;
+    }
+
+    .auth {
+        flex-direction: row;
+    }
+
+    .register,
+    .registerHome {
+        width: 149px;
+        height: 50px;
+    }
+
+    .login,
+    .loginHome {
+        width: 119px;
+        height: 50px;
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .overlay {
+        display: none;
+    }
+}

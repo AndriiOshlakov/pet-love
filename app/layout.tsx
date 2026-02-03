@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import Loader from '@/components/Loader/Loader';
 import { LoaderProvider } from '@/providers/LoaderContext';
+import TanStackProvider from '@/providers/TanStackProvider';
 
 const geistManrope = Manrope({
   variable: '--font-manrope',
@@ -25,13 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <LoaderProvider>
-        <body className={`${geistManrope.variable} `}>
-          <Header />
-          <Loader />
-          {children}
-        </body>
-      </LoaderProvider>
+      <TanStackProvider>
+        <LoaderProvider>
+          <body className={`${geistManrope.variable} `}>
+            <Header />
+            <Loader />
+            {children}
+          </body>
+        </LoaderProvider>
+      </TanStackProvider>
     </html>
   );
 }

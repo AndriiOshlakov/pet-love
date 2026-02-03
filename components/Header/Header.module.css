@@ -310,14 +310,20 @@
         font-size: 16px;
         line-height: 1.25;
         letter-spacing: -0.03em;
-        background-color: #f6b83d;
-        color: #fff;
+        color: #f6b83d;
+        background-color: #fff;
         border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     .register,
     .registerHome {
         padding: 15px 20px;
+    }
+
+    .loginHome,
+    .registerHome {
+        background-color: #f6b83d;
+        color: #fff4df;
     }
 
 
