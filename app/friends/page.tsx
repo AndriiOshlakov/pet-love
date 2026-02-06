@@ -1,9 +1,19 @@
 import Container from '@/components/Container/Container';
+import Title from '@/components/Title/Title';
+import css from './Friends.module.css';
+import FriendsList from '@/components/FriendsList/FriendsList';
+import { fetchFriends } from '@/lib/api/serverApi';
 
-export default function Friends() {
+export default async function Friends() {
+  const ourFriends = await fetchFriends();
+  console.log(ourFriends);
+
   return (
     <Container>
-      <h1>Friends</h1>
+      <section className={css.wrapper}>
+        <Title title="Our friends" />
+        <FriendsList list={ourFriends} />
+      </section>
     </Container>
   );
 }
