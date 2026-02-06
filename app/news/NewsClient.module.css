@@ -1,0 +1,23 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+/* @media screen and (min-width:375px) {} */
+
+@media screen and (min-width:768px) {
+
+    .box {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 27px 0 44px;
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .section {
+        padding: 0 32px 48px;
+    }
+}

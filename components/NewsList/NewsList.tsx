@@ -8,7 +8,7 @@ interface Props {
 
 export default function NewsList({ list }: Props) {
   return (
-    <ul>
+    <ul className={css.newsList}>
       {list.map((item) => (
         <li key={item._id}>
           <NewsItemComponent item={item} />

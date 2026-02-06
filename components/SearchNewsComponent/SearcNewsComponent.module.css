@@ -1,0 +1,64 @@
+.form {
+    position: relative;
+    margin: 20px 0px 24px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: #262626;
+}
+
+.input:focus {
+    border-color: #f6b83d;
+}
+
+.input::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: rgba(38, 38, 38, 0.5);
+}
+
+.submitBtn,
+.clearBtn {
+    padding: 0;
+    display: flex;
+    stroke: #262626;
+    fill: transparent;
+    position: absolute;
+}
+
+.submitBtn {
+    top: 12px;
+    right: 12px;
+}
+
+.clearBtn {
+    top: 12px;
+    right: 34px;
+}
+
+@media screen and (min-width:375px) {
+    .form {
+        width: 335px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .form {
+        width: 230px;
+        height: 48px;
+        margin: 0;
+    }
+}
+
+/* @media screen and(min-width:1280px) {} */

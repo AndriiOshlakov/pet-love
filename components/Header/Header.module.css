@@ -1,7 +1,7 @@
 .container {
     max-width: 100%;
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px 20px;
     margin: 0 auto;
 }
 
@@ -10,6 +10,95 @@
     width: 100%;
     padding: 10px;
     margin: 0 auto;
+    margin-bottom: -102px;
+    z-index: 5;
+}
+
+.container {
+    max-width: 375px;
+    padding: 10px
+}
+
+.containerHome {
+    max-width: 375px;
+    padding: 10px 20px 20px;
+
+}
+
+.header {
+    padding: 18px 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.headerHome {
+    padding: 18px 20px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.logo,
+.logoHome {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #262626;
+    margin-right: auto;
+}
+
+.logoHome {
+    color: #fff;
+}
+
+.icon {
+    width: 17px;
+    height: 17px;
+    fill: #f6b83d;
+    vertical-align: middle;
+}
+
+.iconHome {
+    width: 17px;
+    height: 17px;
+    fill: #fff;
+    vertical-align: middle;
+}
+
+.navList {
+    display: none;
+}
+
+.navListHome {
+    display: none;
+}
+
+.auth {
+    display: none;
+}
+
+.btn {
+    padding: 0;
+    margin-left: 12px;
+}
+
+.btnHome {
+    padding: 0;
+    margin-left: 12px;
+}
+
+.burger {
+    width: 32px;
+    height: 32px;
+    stroke: #262626;
+}
+
+.burgerHome {
+    width: 32px;
+    height: 32px;
+    stroke: #fff;
 }
 
 @media screen and (min-width: 375px) {
@@ -327,11 +416,11 @@
     }
 
 
-    .burger {
+    .btn {
         display: none;
     }
 
-    .burgerHome {
+    .btnHome {
         display: none;
     }
 }
