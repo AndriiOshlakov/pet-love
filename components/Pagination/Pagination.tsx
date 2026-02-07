@@ -64,7 +64,7 @@ export default function Pagination({ page, pageCount, onPageChange }: Props) {
             {page + 2}
           </button>
         )}
-        {!isLastPage && pageCount > 3 && <p className={css.dots}>...</p>}
+        {!isLastPage && pageCount >= 3 && <p className={css.dots}>...</p>}
       </div>
       <div className={css.box}>
         <button className={css.btn} disabled={isLastPage} onClick={() => onPageChange(page + 1)}>
