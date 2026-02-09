@@ -17,7 +17,7 @@
 }
 
 .input:focus {
-    border-color: #f6b83d;
+    border-color: #f6b83c;
 }
 
 .input::placeholder {
@@ -32,7 +32,7 @@
 .clearBtn {
     padding: 0;
     display: flex;
-    stroke: #262626;
+    stroke: rgb(38, 38, 38);
     fill: transparent;
     position: absolute;
 }
@@ -49,7 +49,7 @@
 
 @media screen and (min-width:375px) {
     .form {
-        width: 335px;
+        max-width: 335px;
     }
 }
 

@@ -49,7 +49,7 @@ export default function Pagination({ page, pageCount, onPageChange }: Props) {
         <button onClick={() => onPageChange(page)} className={`${css.page} ${css.active}`}>
           {page}
         </button>
-        {isFirstPage && (
+        {isFirstPage && pageCount > 1 && (
           <button onClick={() => onPageChange(page + 1)} className={css.pageMob}>
             {page + 1}
           </button>

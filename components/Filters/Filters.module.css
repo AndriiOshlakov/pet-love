@@ -1,0 +1,243 @@
+.formBox {
+    border-radius: 30px;
+    max-width: 335px;
+    padding: 20px;
+    background-color: #fff4df;
+    margin-top: 40px;
+}
+
+.box {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(38, 38, 38, 0.1);
+}
+
+.inputLabel {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: #262626;
+    margin-bottom: 12px;
+}
+
+.input:focus {
+    border-color: #f6b83d;
+}
+
+.input::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: #262626;
+}
+
+.submitBtn,
+.clearBtn {
+    padding: 0;
+    display: flex;
+    stroke: #262626;
+    fill: transparent;
+    position: absolute;
+}
+
+.submitBtn {
+    top: 3px;
+    right: 12px;
+}
+
+.clearBtn {
+    top: 3px;
+    right: 34px;
+}
+
+.categoriesLabel,
+.genderLabel,
+.speciesLabel {
+    position: relative;
+    margin-right: 8px;
+}
+
+.genderLabel,
+.speciesLabel {
+    margin-right: 0;
+}
+
+.categories,
+.gender,
+.species {
+    border-radius: 30px;
+    padding: 12px;
+    width: 143px;
+    height: 42px;
+    appearance: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: #262626;
+    outline: none;
+    border: none;
+}
+
+.species {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.categoriesChevron,
+.genderChevron,
+.speciesChevron {
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    stroke: #262626;
+    fill: transparent;
+}
+
+.categories option,
+.gender option,
+.species option {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: rgba(38, 38, 38, 0.6);
+}
+
+.categories option:hover,
+.gender option:hover {
+    color: #f6b83d;
+    background-color: #fff;
+}
+
+.radios {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.radio {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 30px;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: #262626;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+.radio.active {
+    background-color: #f6b83d;
+    color: #fff;
+}
+
+.radio input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btnDefault {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    stroke: #fff;
+}
+
+@media screen and (min-width:375px) {
+
+
+    .formBox {
+        max-width: 335px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .formBox {
+        max-width: 704px;
+        width: 704px;
+        padding: 40px 32px;
+        margin-top: 44px;
+    }
+
+    .box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 16px;
+    }
+
+    .input {
+        width: 265px;
+        margin: 0;
+    }
+
+    .categoriesLabel {
+        margin: 0;
+    }
+
+    .categories,
+    .gender {
+        width: 170px;
+    }
+
+    .species {
+        width: 190px;
+        margin: 0;
+    }
+
+    .clearBtn,
+    .submitBtn {
+        top: 12px;
+    }
+
+    .genderChevron,
+    .speciesChevron,
+    .categoriesChevron {
+        top: 12px;
+    }
+
+    .select {
+        width: 227px;
+    }
+
+    .radios {
+        gap: 8px;
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .formBox {
+        max-width: 1216px;
+        width: 1216px;
+        padding: 40px;
+    }
+
+    .categories {
+        width: 200px;
+    }
+
+    .gender,
+    .species {
+        width: 190px;
+    }
+}

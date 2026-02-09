@@ -35,7 +35,13 @@ export default function SearchNewsForm({ onSearch, onPage }: Props) {
               </svg>
             </button>
             {values.keyword && (
-              <button onClick={() => setFieldValue('keyword', '')} className={css.clearBtn}>
+              <button
+                onClick={() => {
+                  setFieldValue('keyword', '');
+                  onSearch('');
+                }}
+                className={css.clearBtn}
+              >
                 <svg width={18} height={18}>
                   <use href="/symbol-defs.svg#x" />
                 </svg>

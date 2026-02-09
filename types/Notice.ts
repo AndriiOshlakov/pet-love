@@ -25,7 +25,7 @@ export interface Notices {
 
 export interface NoticeRequestParams {
   keyword?: string;
-  category?: 'sell' | 'free' | 'lost' | 'found';
+  category?: 'sell' | 'free' | 'lost' | 'found' | '';
   species?:
     | 'dog'
     | 'cat'
@@ -40,12 +40,13 @@ export interface NoticeRequestParams {
     | 'bees'
     | 'butterfly'
     | 'spider'
-    | 'scorpion';
+    | 'scorpion'
+    | '';
   locationId?: string;
   byDate?: boolean;
-  byPrice?: boolean;
-  byPopularity?: boolean;
+  byPrice?: boolean | null;
+  byPopularity?: boolean | null;
   page: number;
   limit?: number;
-  sex?: 'unknown' | 'female' | 'male' | 'multiple';
+  sex?: 'unknown' | 'female' | 'male' | 'multiple' | '';
 }
