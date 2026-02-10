@@ -5,6 +5,7 @@ import Header from '@/components/Header/Header';
 import Loader from '@/components/Loader/Loader';
 import { LoaderProvider } from '@/providers/LoaderContext';
 import TanStackProvider from '@/providers/TanStackProvider';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const geistManrope = Manrope({
   variable: '--font-manrope',
@@ -26,15 +27,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <TanStackProvider>
-        <LoaderProvider>
-          <body className={`${geistManrope.variable} `}>
-            <Header />
-            <Loader />
-            {children}
-          </body>
-        </LoaderProvider>
-      </TanStackProvider>
+      <AuthProvider>
+        <TanStackProvider>
+          <LoaderProvider>
+            <body className={`${geistManrope.variable} `}>
+              <Header />
+              <Loader />
+              {children}
+            </body>
+          </LoaderProvider>
+        </TanStackProvider>
+      </AuthProvider>
     </html>
   );
 }

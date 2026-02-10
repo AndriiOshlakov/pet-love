@@ -3,6 +3,8 @@ import { nextServer } from './api';
 import { Friend } from '@/types/Friend';
 import { NoticeRequestParams, Notices } from '@/types/Notice';
 import { LocationFromBackend } from '@/types/Location';
+import { RegisterType } from '@/types/Register';
+import { User } from '@/types/User';
 
 export async function fetchNews({ keyword, page, limit }: NewsRequestParams) {
   const response = await nextServer.get<NewsResponse>('/news', {
@@ -42,5 +44,15 @@ export async function fetchLocations(keyword?: string) {
   const response = await nextServer.get<LocationFromBackend[]>('/cities', { params: { keyword } });
   console.log(response);
 
+  return response.data;
+}
+
+export async function register(params: RegisterType) {
+  const response = await nextServer.post('/auth/sign-up', params);
+  return response.data;
+}
+
+export async function getUser() {
+  const response = await nextServer.get<User>('/auth/user');
   return response.data;
 }
