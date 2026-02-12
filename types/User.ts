@@ -4,7 +4,7 @@ export interface User {
   _id?: string;
   name: string;
   email: string;
-  avatar?: string;
+  avatar: string;
   phone?: string;
   token?: string;
   noticesViewed?: Pet[];

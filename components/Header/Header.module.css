@@ -101,6 +101,41 @@
     stroke: #fff;
 }
 
+.userContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.userIconBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #fff4df;
+    padding: 0;
+}
+
+.userIcon {
+    stroke: #f6b83d;
+    fill: #f6b83d;
+}
+
+.logoutBtn {
+    display: none;
+}
+
+.userName {
+    display: none;
+}
+
+.userNameHome {
+    display: none;
+}
+
 @media screen and (min-width: 375px) {
     .container {
         max-width: 375px;
@@ -302,6 +337,67 @@
     .burgerHome {
         width: 36px;
         height: 36px;
+    }
+
+
+    .userContainer {
+        gap: 8px;
+    }
+
+    .logoutBtn,
+    .logoutBtnHome {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 136px;
+        height: 50px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+        color: #f6b83d;
+        background-color: #fff4df;
+    }
+
+    .logoutBtn:hover {
+        color: #fff;
+        background-color: #f6b83d;
+    }
+
+    .logoutBtnHome {
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: #fff;
+        background-color: #f6b83d;
+    }
+
+    .logoutBtnHome:hover {
+        color: #f6b83d;
+        background-color: #fff4df;
+    }
+
+    .userIconBox {
+        width: 50px;
+        height: 50px;
+    }
+
+    .userIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .userName,
+    .userNameHome {
+        display: block;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: #262626;
+    }
+
+    .userNameHome {
+        color: #fff;
     }
 }
 

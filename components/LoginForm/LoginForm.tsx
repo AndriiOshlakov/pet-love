@@ -1,19 +1,17 @@
 'use client';
 
-import css from './RegisterForm.module.css';
+import css from './LoginForm.module.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import * as yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
-import { register as registerUser } from '@/lib/api/serverApi';
+import { login as loginUser } from '@/lib/api/serverApi';
 import { useAuthStore } from '@/lib/store/AuthStore';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export const registrationSchema = yup.object({
-  name: yup.string().required('Name is required'),
-
+export const loginSchema = yup.object({
   email: yup
     .string()
     .required('Email is required')
@@ -23,41 +21,31 @@ export const registrationSchema = yup.object({
     .string()
     .required('Password is required')
     .min(7, 'Password must be at least 7 characters'),
-
-  confirmPassword: yup
-    .string()
-    .required('Confirm password is required')
-    .oneOf([yup.ref('password')], 'Passwords do not match'),
 });
 
-interface RegistrationFormData {
-  name: string;
+interface LoginFormData {
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
   const [isPassword, setIsPassword] = useState(true);
-  const [isConfirmPassword, setIsConfirmPassword] = useState(true);
 
   const togglePassword = () => setIsPassword(!isPassword);
-  const toggleConfirmPassword = () => setIsConfirmPassword(!isConfirmPassword);
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<RegistrationFormData>({
-    resolver: yupResolver(registrationSchema),
+  } = useForm<LoginFormData>({
+    resolver: yupResolver(loginSchema),
   });
-  const onSubmit = async (data: RegistrationFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     try {
-      const user = await registerUser({
-        name: data.name,
+      const user = await loginUser({
         email: data.email,
         password: data.password,
       });
@@ -66,11 +54,9 @@ export default function RegisterForm() {
         setUser(user);
       }
 
-      toast(`${user.name} logined successfuly`);
-
       router.push('/profile');
     } catch (error: any) {
-      toast(error?.data?.message || 'Registration failed');
+      toast(error?.data?.message || 'Login failed');
     }
   };
 
@@ -80,14 +66,6 @@ export default function RegisterForm() {
     <div className={css.box}>
       <Toaster />
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <label className={css.label}>
-          <input
-            placeholder="Name"
-            {...register('name')}
-            className={`${css.input} ${errors.name ? css.inputError : ''}`}
-          />
-          {errors.name && <p style={{ color: '#ef2447' }}>{errors.name.message}</p>}
-        </label>
         <label className={css.label}>
           <input
             placeholder="Email"
@@ -123,35 +101,13 @@ export default function RegisterForm() {
             </svg>
           )}
         </label>
-        <label className={css.label}>
-          <input
-            type={isConfirmPassword ? 'password' : 'text'}
-            placeholder="Confirm password"
-            {...register('confirmPassword')}
-            className={`${css.input} ${errors.confirmPassword ? css.inputError : ''}`}
-          />
-          {!isConfirmPassword && (
-            <svg className={css.eye} width={18} height={18} onClick={toggleConfirmPassword}>
-              <use href="/symbol-defs.svg#eye-off" />
-            </svg>
-          )}
-          {isConfirmPassword && (
-            <svg className={css.eye} width={18} height={18} onClick={toggleConfirmPassword}>
-              <use href="/symbol-defs.svg#eye" />
-            </svg>
-          )}
-          {errors.confirmPassword && (
-            <p style={{ color: '#ef2447' }}>{errors.confirmPassword.message}</p>
-          )}
-        </label>
-
         <button type="submit" disabled={isSubmitting} className={css.btn}>
-          REGISTRATION
+          LOG IN
         </button>
         <p className={css.text}>
-          Already have an account?
-          <Link href={'/login'} className={css.link}>
-            Login
+          Don’t have an account?
+          <Link href={'/register'} className={css.link}>
+            Register
           </Link>
         </p>
       </form>

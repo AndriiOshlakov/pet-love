@@ -48,7 +48,14 @@ export async function fetchLocations(keyword?: string) {
 }
 
 export async function register(params: RegisterType) {
-  const response = await nextServer.post('/auth/sign-up', params);
+  const response = await nextServer.post<User>('/auth/sign-up', params);
+  console.log(response.data);
+
+  return response.data;
+}
+
+export async function login(params: Pick<RegisterType, 'email' | 'password'>) {
+  const response = await nextServer.post('/auth/sign-in', params);
   return response.data;
 }
 
@@ -56,3 +63,11 @@ export async function getUser() {
   const response = await nextServer.get<User>('/auth/user');
   return response.data;
 }
+export async function getFullUser() {
+  const response = await nextServer.get<User>('/auth/user/full');
+  return response.data;
+}
+
+export const logout = async (): Promise<void> => {
+  await nextServer.post('/auth/logout');
+};

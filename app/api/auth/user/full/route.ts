@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { apiWithAuth } from '../../api';
 import { isAxiosError } from 'axios';
+import { apiWithAuth } from '@/app/api/api';
 
 export async function GET() {
   try {
     const api = await apiWithAuth();
-    const res = await api.get('/users/current');
+    const res = await api.get('/users/current/full');
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
     if (isAxiosError(error)) {
