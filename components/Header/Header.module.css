@@ -108,6 +108,10 @@
     margin-left: auto;
 }
 
+.avatar {
+    border-radius: 100%;
+}
+
 .userIconBox {
     display: flex;
     align-items: center;
@@ -124,13 +128,12 @@
     fill: #f6b83d;
 }
 
-.logoutBtn {
+.logoutBtn,
+.userName,
+.logoutBtnHome {
     display: none;
 }
 
-.userName {
-    display: none;
-}
 
 .userNameHome {
     display: none;
@@ -342,6 +345,11 @@
 
     .userContainer {
         gap: 8px;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
     }
 
     .logoutBtn,

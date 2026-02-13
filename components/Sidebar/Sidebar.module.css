@@ -93,8 +93,8 @@
  }
 
  .linkHome:hover {
-     color: #f6b83d;
-     background-color: #fff;
+     background-color: #f6b83d;
+     color: #fff;
  }
 
  .linkHome .active {
@@ -109,12 +109,13 @@
  }
 
  .login,
- .register {
+ .register,
+ .logoutBtn,
+ .logoutBtnHome {
      display: flex;
      align-items: center;
      justify-content: center;
      border-radius: 30px;
-
      width: 100%;
      height: 42px;
      background-color: #f6b83d;
@@ -126,20 +127,29 @@
      border: 1px solid rgba(255, 255, 255, 0.5);
  }
 
+ .logoutBtn,
+ .logoutBtnHome {
+     width: 178px;
+     margin-top: auto;
+ }
+
  .login:hover,
- .register:hover {
+ .register:hover,
+ .logoutBtn:hover {
      color: #f6b83d;
      background-color: #fff;
  }
 
  .loginHome,
- .registerHome {
+ .registerHome,
+ .logoutBtnHome {
      color: #f6b83d;
      background-color: #fff4df;
  }
 
  .loginHome:hover,
- .registerHome:hover {
+ .registerHome:hover,
+ .logoutBtnHome:hover {
      color: #fff4df;
      background-color: #f6b83d;
  }
@@ -240,8 +250,8 @@
      }
 
      .linkHome:hover {
-         color: #f6b83d;
-         background-color: #fff;
+         background-color: #f6b83d;
+         color: #fff;
      }
 
      .linkHome .active {

@@ -9,6 +9,8 @@ import { useAuthStore } from '@/lib/store/AuthStore';
 import { User } from '@/types/User';
 import { getFullUser } from '@/lib/api/serverApi';
 import Image from 'next/image';
+import Modal from '../Modal/Modal';
+import LogoutConfirmComponent from '../LogoutConfirmComponent/LogoutConfirmComponent';
 
 export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -16,18 +18,9 @@ export default function Header() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const user = useAuthStore((state) => state.user);
-  const clearUser = useAuthStore((state) => state.clearUser);
   const pathname = usePathname();
   const isHome = pathname === '/home';
-  // useEffect(() => {
-  //   if (user) {
-  //     const fetchCurrentUser = async () => {
-  //       await getFullUser();
-  //     };
-  //     const currentUser = fetchCurrentUser();
-  //     // setFullUser(currentUser);
-  //   }
-  // });
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   return (
     <div className={`${isHome ? css.containerHome : css.container}`}>
       <section className={`${isHome ? css.headerHome : css.header}`}>
@@ -78,21 +71,25 @@ export default function Header() {
         )}
         {user && (
           <div className={css.userContainer}>
-            <button type="button" className={`${isHome ? css.logoutBtnHome : css.logoutBtn}`}>
+            <button
+              type="button"
+              className={`${isHome ? css.logoutBtnHome : css.logoutBtn}`}
+              onClick={() => setIsLogoutOpen(true)}
+            >
               LOG OUT
             </button>
-            {user.avatar !== '' ? (
+            {user?.avatar && user.avatar.trim() !== '' ? (
               <Image
                 src={user.avatar}
-                width={50}
-                height={50}
+                width={40}
+                height={40}
                 alt="User avatar"
                 className={css.avatar}
               />
             ) : (
               <div className={css.userIconBox}>
                 <svg width={20} height={20} className={css.userIcon}>
-                  <use href="/symbol-defs.svg/#user" />
+                  <use href="/symbol-defs.svg#user" />
                 </svg>
               </div>
             )}
@@ -106,6 +103,11 @@ export default function Header() {
         </button>
       </section>
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebarOpen} />
+      {isLogoutOpen && (
+        <Modal onClose={() => setIsLogoutOpen(false)}>
+          <LogoutConfirmComponent onClose={() => setIsLogoutOpen(false)} />
+        </Modal>
+      )}
     </div>
   );
 }
