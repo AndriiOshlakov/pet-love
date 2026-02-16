@@ -5,7 +5,6 @@ import { api } from '../../api';
 export async function GET(request: NextRequest) {
   try {
     const response = await api.get('/notices/categories');
-    console.log(response);
 
     return NextResponse.json(response.data, { status: response.status });
   } catch (error) {

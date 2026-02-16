@@ -6,7 +6,6 @@ import { fetchFriends } from '@/lib/api/serverApi';
 
 export default async function Friends() {
   const ourFriends = await fetchFriends();
-  console.log(ourFriends);
 
   return (
     <Container>

@@ -36,7 +36,6 @@ type Props = {
 export async function DELETE(request: Request, { params }: Props) {
   try {
     const { id } = await params;
-    console.log('REMOVE', id);
 
     const api = await apiWithAuth();
 
