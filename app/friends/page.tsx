@@ -5,13 +5,13 @@ import FriendsList from '@/components/FriendsList/FriendsList';
 import { fetchFriends } from '@/lib/api/serverApi';
 
 export default async function Friends() {
-  // const ourFriends = await fetchFriends();
+  const ourFriends = await fetchFriends();
 
   return (
     <Container>
       <section className={css.wrapper}>
-        {/* <Title title="Our friends" />
-        <FriendsList list={ourFriends} /> */}
+        <Title title="Our friends" />
+        <FriendsList list={ourFriends} />
       </section>
     </Container>
   );

@@ -78,22 +78,24 @@ export default function Header() {
             >
               LOG OUT
             </button>
-            {user?.avatar && user.avatar.trim() !== '' ? (
-              <Image
-                src={user.avatar}
-                width={40}
-                height={40}
-                alt="User avatar"
-                className={css.avatar}
-              />
-            ) : (
-              <div className={css.userIconBox}>
-                <svg width={20} height={20} className={css.userIcon}>
-                  <use href="/symbol-defs.svg#user" />
-                </svg>
-              </div>
-            )}
-            <p className={`${isHome ? css.userNameHome : css.userName}`}>{user.name}</p>
+            <Link href="/profile" className={css.profileLink}>
+              {user?.avatar && user.avatar.trim() !== '' ? (
+                <Image
+                  src={user.avatar}
+                  width={40}
+                  height={40}
+                  alt="User avatar"
+                  className={css.avatar}
+                />
+              ) : (
+                <div className={css.userIconBox}>
+                  <svg width={20} height={20} className={css.userIcon}>
+                    <use href="/symbol-defs.svg#user" />
+                  </svg>
+                </div>
+              )}
+              <p className={`${isHome ? css.userNameHome : css.userName}`}>{user.name}</p>
+            </Link>
           </div>
         )}
         <button onClick={toggleSidebarOpen} className={`${isHome ? css.btnHome : css.btn}`}>

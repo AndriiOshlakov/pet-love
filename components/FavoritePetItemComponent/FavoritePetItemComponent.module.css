@@ -105,7 +105,7 @@
     color: #fff;
 }
 
-.heart {
+.trash {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,24 +118,14 @@
     fill: transparent;
 }
 
-.activeHeart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    width: 46px;
-    height: 46px;
-    background-color: #fff4df;
-    padding: 0;
-    stroke: red;
-    fill: red;
-}
+
 
 @media screen and (min-width:768px) {
     .notice {
         max-width: 342px;
         width: 342px;
         height: 472px;
+        padding: 14px;
     }
 
     .img {
@@ -169,8 +159,7 @@
         line-height: 1.25;
     }
 
-    .heart,
-    .activeHeart {
+    .trash {
         width: 48px;
         height: 48px;
     }
@@ -179,9 +168,9 @@
 
 @media screen and (min-width:1280px) {
     .notice {
-        max-width: 363px;
-        width: 363px;
-        height: 472px;
+        max-width: 320px;
+        width: 320px;
+        height: 422px;
         gap: 24px;
     }
 

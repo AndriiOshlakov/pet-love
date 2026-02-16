@@ -4,6 +4,9 @@ import { useAuthStore } from '@/lib/store/AuthStore';
 import css from './Profile.module.css';
 import { useEffect } from 'react';
 import { getFullUser } from '@/lib/api/serverApi';
+import Container from '@/components/Container/Container';
+import UserInfoComponent from '@/components/UserInfoComponent/UserInfoComponent';
+import MyFavoritePetsComponent from '@/components/MyFavoritePetsComponent/MyFavoritePetsComponent';
 
 export default function Profile() {
   const user = useAuthStore((state) => state.user);
@@ -23,17 +26,11 @@ export default function Profile() {
   }, [setUser]);
 
   return (
-    <section className={css.wrapper}>
-      <h1>Profile page</h1>
-      {user ? (
-        <div>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>Favorites: {user.noticesFavorites?.length ?? 0}</p>
-        </div>
-      ) : (
-        <p>Loading user...</p>
-      )}
-    </section>
+    <Container>
+      <section className={css.profile}>
+        <UserInfoComponent currentUser={user} />
+        <MyFavoritePetsComponent currentUser={user} />
+      </section>
+    </Container>
   );
 }
