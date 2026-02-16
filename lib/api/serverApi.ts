@@ -1,10 +1,11 @@
 import { NewsRequestParams, NewsResponse } from '@/types/News';
 import { nextServer } from './api';
 import { Friend } from '@/types/Friend';
-import { NoticeRequestParams, Notices } from '@/types/Notice';
+import { Notice, NoticeRequestParams, Notices } from '@/types/Notice';
 import { LocationFromBackend } from '@/types/Location';
 import { RegisterType } from '@/types/Register';
 import { User } from '@/types/User';
+import { Pet } from '@/types/Pet';
 
 export async function fetchNews({ keyword, page, limit }: NewsRequestParams) {
   const response = await nextServer.get<NewsResponse>('/news', {
@@ -25,6 +26,21 @@ export async function fetchNotices(params: NoticeRequestParams) {
   return response.data;
 }
 
+export async function fetchOneNotice(id: string) {
+  const response = await nextServer.get<Pet>(`/notices/${id}`);
+  return response.data;
+}
+
+export async function addToFavorites(id: string) {
+  const response = await nextServer.post(`/notices/favorites/add/${id}`);
+  return response.data;
+}
+
+export async function removeFromFavorites(id: string) {
+  const response = await nextServer.delete(`/notices/favorites/remove/${id}`);
+  return response.data;
+}
+
 export async function fetchCategories(): Promise<string[]> {
   const response = await nextServer.get<string[]>('/notices/categories');
   return response.data;
@@ -42,14 +58,12 @@ export async function fetchSpecies(): Promise<string[]> {
 
 export async function fetchLocations(keyword?: string) {
   const response = await nextServer.get<LocationFromBackend[]>('/cities', { params: { keyword } });
-  console.log(response);
 
   return response.data;
 }
 
 export async function register(params: RegisterType) {
   const response = await nextServer.post<User>('/auth/sign-up', params);
-  console.log(response.data);
 
   return response.data;
 }

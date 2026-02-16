@@ -11,7 +11,11 @@ export interface Pet {
   location: string;
   imgURL: string;
   createdAt: string;
-  user: string;
+  user: {
+    id: string;
+    email: string;
+    phone: string;
+  };
   popularity: number;
   updatedAt: string;
 }

@@ -8,7 +8,7 @@ export interface User {
   phone?: string;
   token?: string;
   noticesViewed?: Pet[];
-  noticesFavorites?: Pet[];
+  noticesFavorites: Pet[];
   pets?: Pet[];
   createdAt?: string;
   updatedAt?: string;

@@ -118,6 +118,11 @@
     fill: transparent;
 }
 
+.activeHeart {
+    stroke: red;
+    fill: red;
+}
+
 @media screen and (min-width:768px) {
     .notice {
         max-width: 342px;
@@ -156,7 +161,8 @@
         line-height: 1.25;
     }
 
-    .heart {
+    .heart,
+    .activeHeart {
         width: 48px;
         height: 48px;
     }

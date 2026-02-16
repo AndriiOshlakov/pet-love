@@ -16,6 +16,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     const checkAuth = async () => {
       try {
         const user = await getFullUser();
+
         setUser(user);
       } catch (error) {
         clearUser();
