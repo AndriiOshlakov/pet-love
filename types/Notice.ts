@@ -1,3 +1,5 @@
+import { Pet } from './Pet';
+
 export interface Notice {
   _id: string;
   species: string;
@@ -20,7 +22,7 @@ export interface Notices {
   page: number;
   perPage: number;
   totalPages: number;
-  results: Notice[];
+  results: Pet[];
 }
 
 export interface NoticeRequestParams {
