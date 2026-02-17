@@ -8,6 +8,7 @@ import Link from 'next/link';
 import MyPetsItemComponent from '../MyPetsItemComponent/MyPetsItemComponent';
 import LogoutConfirmComponent from '../LogoutConfirmComponent/LogoutConfirmComponent';
 import Modal from '../Modal/Modal';
+import EditUserProfileModalComponent from '../EditUserProfileModalComponent/EditUserProfileModalComponent';
 
 interface Props {
   currentUser: User | null;
@@ -80,6 +81,11 @@ export default function UserInfoComponent({ currentUser }: Props) {
       {isLogoutOpen && (
         <Modal onClose={() => setIsLogoutOpen(false)}>
           <LogoutConfirmComponent onClose={() => setIsLogoutOpen(false)} />
+        </Modal>
+      )}
+      {isModalEditUserOpen && (
+        <Modal onClose={() => setIsModalEditUserOpen(false)}>
+          <EditUserProfileModalComponent onClose={() => setIsModalEditUserOpen(false)} />
         </Modal>
       )}
     </div>

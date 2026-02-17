@@ -4,6 +4,7 @@ import { useState } from 'react';
 import css from './MyFavoritePetsComponent.module.css';
 import { User } from '@/types/User';
 import FavoritePetItemComponent from '../FavoritePetItemComponent/FavoritePetItemComponent';
+import NoticesViewedItemComponent from '../NoticesViewedItemComponent/NoticesViewedItemComponent';
 
 interface Props {
   currentUser: User | null;
@@ -36,7 +37,11 @@ export default function MyFavoritePetsComponent({ currentUser }: Props) {
                 <FavoritePetItemComponent item={item} />
               </li>
             ))
-          : currentUser?.noticesViewed?.map((item) => <li key={item._id}></li>)}
+          : currentUser?.noticesViewed?.map((item) => (
+              <li key={item._id}>
+                <NoticesViewedItemComponent item={item} />
+              </li>
+            ))}
       </ul>
       {isActive && currentUser?.noticesFavorites.length === 0 && (
         <p className={css.text}>

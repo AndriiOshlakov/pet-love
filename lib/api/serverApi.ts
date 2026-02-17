@@ -77,8 +77,21 @@ export async function getUser() {
   const response = await nextServer.get<User>('/auth/user');
   return response.data;
 }
+
 export async function getFullUser() {
   const response = await nextServer.get<User>('/auth/user/full');
+  return response.data;
+}
+
+interface EditUserProps {
+  name?: string;
+  emai?: string;
+  phone?: string;
+  avatar?: string;
+}
+
+export async function editUser(params: EditUserProps) {
+  const response = await nextServer.patch<User>('/auth/user/edit', params);
   return response.data;
 }
 

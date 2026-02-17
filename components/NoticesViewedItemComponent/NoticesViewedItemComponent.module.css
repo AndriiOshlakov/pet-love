@@ -1,0 +1,160 @@
+.notice {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 336px;
+    width: 335px;
+    height: 454px;
+    background-color: #fff;
+    gap: 24px;
+}
+
+.img {
+    border-radius: 16px;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.animal {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #2b2b2a;
+}
+
+.starBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.star {
+    fill: #ffc531;
+}
+
+.starBox span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #2b2b2a;
+}
+
+.infoBox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: rgba(38, 38, 38, 0.5);
+}
+
+.value {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #262626;
+}
+
+.text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: #2b2b2a;
+    margin-bottom: 16px;
+    height: 36px;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #2b2b2a;
+    margin-bottom: 12px;
+}
+
+.btnBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    width: 100%;
+    height: 46px;
+    background-color: #f6b83d;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+
+@media screen and (min-width:768px) {
+    .notice {
+        max-width: 342px;
+        width: 342px;
+        height: 472px;
+        padding: 14px;
+    }
+
+    .img {
+        width: 294px;
+        height: 178px;
+    }
+
+    .animal {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .starBox span {
+        line-height: 1.4;
+    }
+
+    .text {
+        margin-bottom: 24px;
+    }
+
+    .price {
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .btn {
+        height: 48px;
+        font-size: 16px;
+        line-height: 1.25;
+    }
+
+}
+
+@media screen and (min-width:1280px) {
+    .notice {
+        max-width: 320px;
+        width: 320px;
+        height: 422px;
+        gap: 24px;
+    }
+
+    .img {
+        width: 315px;
+    }
+
+}

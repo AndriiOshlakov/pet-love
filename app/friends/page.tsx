@@ -4,6 +4,8 @@ import css from './Friends.module.css';
 import FriendsList from '@/components/FriendsList/FriendsList';
 import { fetchFriends } from '@/lib/api/serverApi';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Friends() {
   const ourFriends = await fetchFriends();
 
