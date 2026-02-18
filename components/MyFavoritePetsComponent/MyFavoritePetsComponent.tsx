@@ -12,7 +12,6 @@ interface Props {
 
 export default function MyFavoritePetsComponent({ currentUser }: Props) {
   const [isActive, setIsActive] = useState(true);
-  console.log(currentUser);
 
   return (
     <div className={css.box}>

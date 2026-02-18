@@ -69,7 +69,7 @@ export default function UserInfoComponent({ currentUser }: Props) {
       {currentUser?.pets && currentUser.pets.length > 0 && (
         <ul className={css.list}>
           {currentUser.pets.map((item) => (
-            <li>
+            <li key={item._id}>
               <MyPetsItemComponent pet={item} />
             </li>
           ))}

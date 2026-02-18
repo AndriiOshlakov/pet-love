@@ -6,24 +6,18 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export async function DELETE(request: Request, { params }: Props) {
+export async function DELETE(req: Request, { params }: Props) {
   try {
     const { id } = await params;
 
     const api = await apiWithAuth();
-
-    const res = await api.delete(`/notices/favorites/remove/${id}`);
+    const res = await api.delete(`/users/current/pets/remove/${id}`);
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
     if (isAxiosError(error)) {
       return NextResponse.json(
-        {
-          error: error.message,
-          response: error.response?.data,
-        },
-        {
-          status: error.response?.status || 500,
-        },
+        { error: error.message, response: error.response?.data },
+        { status: error.status },
       );
     }
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

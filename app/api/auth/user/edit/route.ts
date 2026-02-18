@@ -3,8 +3,6 @@ import { isAxiosError } from 'axios';
 import { apiWithAuth } from '@/app/api/api';
 
 export async function PATCH(req: Request) {
-  console.log('EDT ROUTE');
-
   try {
     const body = await req.json();
     const api = await apiWithAuth();

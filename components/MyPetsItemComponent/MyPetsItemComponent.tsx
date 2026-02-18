@@ -3,17 +3,24 @@
 import { Pet } from '@/types/Pet';
 import css from './MyPetsItemComponent.module.css';
 import Image from 'next/image';
+import { removeMypet } from '@/lib/api/serverApi';
+import { useAuthStore } from '@/lib/store/AuthStore';
 
 interface Props {
   pet: Pet;
 }
 
 export default function MyPetsItemComponent({ pet }: Props) {
+  const removePet = useAuthStore((state) => state.removePet);
+  const deletePet = () => {
+    removeMypet(pet._id);
+    removePet(pet._id);
+  };
   return (
     <div className={css.box}>
       <Image src={pet.imgURL} width={66} height={66} alt="Pet avatar" className={css.avatar} />
       <div className={css.infoBox}>
-        <h4 className={css.title}>{pet.comment.slice(0, 18)}</h4>
+        <h4 className={css.title}>{pet.title.slice(0, 18)}</h4>
         <div className={css.wrapper}>
           <p className={css.text}>
             Name
@@ -35,7 +42,7 @@ export default function MyPetsItemComponent({ pet }: Props) {
           </p>
         </div>
       </div>
-      <button className={css.btn}>
+      <button className={css.btn} onClick={deletePet}>
         <svg width={16} height={16} className={css.icon}>
           <use href="/symbol-defs.svg#trash" />
         </svg>

@@ -8,6 +8,7 @@ interface AuthState {
   clearUser: () => void;
   addFavorite: (pet: Pet) => void;
   removeFavorite: (petId: string) => void;
+  removePet: (petId: string) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -48,6 +49,18 @@ export const useAuthStore = create<AuthState>((set) => ({
         user: {
           ...state.user,
           noticesFavorites: state.user.noticesFavorites.filter((pet) => pet._id !== petId),
+        },
+      };
+    }),
+
+  removePet: (petId) =>
+    set((state) => {
+      if (!state.user) return state;
+
+      return {
+        user: {
+          ...state.user,
+          pets: state.user.pets.filter((pet) => pet._id !== petId),
         },
       };
     }),

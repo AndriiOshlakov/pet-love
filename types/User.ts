@@ -9,7 +9,7 @@ export interface User {
   token?: string;
   noticesViewed: Pet[];
   noticesFavorites: Pet[];
-  pets?: Pet[];
+  pets: Pet[];
   createdAt?: string;
   updatedAt?: string;
 }

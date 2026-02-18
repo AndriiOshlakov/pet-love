@@ -12,17 +12,6 @@ export default function FormImage({ desktopSrc, tabletSrc, mobileSrc, src }: Pro
   return (
     <div className={css.container}>
       <picture>
-        {/* <source media="(max-width: 768px)" srcSet={mobileSrc} width={335} height={280} />
-        <source media="(max-width: 1279px)" srcSet={tabletSrc} width={704} height={302} />
-
-        <Image
-          src={desktopSrc}
-          alt={'Animal picture'}
-          width={592}
-          height={654}
-          priority
-          className={css.img}
-        /> */}
         <source media="(min-width: 1280px)" srcSet={desktopSrc} width={592} height={654} />
         <source media="(min-width: 768px)" srcSet={tabletSrc} width={704} height={302} />
 

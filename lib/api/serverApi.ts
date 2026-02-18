@@ -95,6 +95,25 @@ export async function editUser(params: EditUserProps) {
   return response.data;
 }
 
+export interface AddPetProps {
+  name: string;
+  title: string;
+  imgURL: string;
+  species: string;
+  birthday: string;
+  sex: string;
+}
+
+export async function addMyPet(params: AddPetProps) {
+  const response = await nextServer.post<User>('/auth/user/pets', { params });
+  return response.data;
+}
+
+export async function removeMypet(id: string) {
+  const response = await nextServer.delete<User>(`/auth/user/pets/${id}`);
+  return response.data;
+}
+
 export const logout = async (): Promise<void> => {
   await nextServer.post('/auth/logout');
 };

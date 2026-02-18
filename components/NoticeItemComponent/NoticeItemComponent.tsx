@@ -56,7 +56,7 @@ export default function NoticeItemComponent({ onClose, pet }: Props) {
         </p>
         <p>
           Birthday
-          <span>{pet.birthday.split('-').join('.')}</span>
+          <span>{pet.birthday ? pet.birthday.split('-').join('.') : 'Unknown'}</span>
         </p>
         <p>
           Sex
