@@ -122,7 +122,7 @@ export default function Filters({ filters, onChangeFilters }: Props) {
                 })
               }
             >
-              <option value="">Show all</option>
+              <option value="">Category</option>
               {categories &&
                 categories.map((category) => (
                   <option key={category} value={category}>
@@ -147,7 +147,7 @@ export default function Filters({ filters, onChangeFilters }: Props) {
                 })
               }
             >
-              <option value="">Show all</option>
+              <option value="">By gender</option>
               {gender &&
                 gender.map((sex) => (
                   <option key={sex} value={sex}>
@@ -171,7 +171,7 @@ export default function Filters({ filters, onChangeFilters }: Props) {
                 })
               }
             >
-              <option value="">Show all</option>
+              <option value="">By type</option>
               {species &&
                 species.map((item) => (
                   <option key={item} value={item}>
