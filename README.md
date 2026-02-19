@@ -1,36 +1,337 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐾 PetLove
 
-## Getting Started
+PetLove — це веб-застосунок для пошуку оголошень про домашніх улюбленців, перегляду новин, додавання
+власних улюбленців та управління профілем користувача.
 
-First, run the development server:
+Проєкт реалізований з використанням сучасного стеку технологій та інтеграцією з backend API.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Основні технології
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js (App Router)
+- React
+- TypeScript
+- Axios
+- Zustand / Redux (залежно від реалізації)
+- react-hook-form
+- Yup
+- react-select
+- CSS Modules / Tailwind (залежно від реалізації)
+- REST API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+API документація:  
+👉 https://petlove.b.goit.study/api-docs/
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📌 Основний функціонал
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔹 Головний layout ("/")
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Містить:
 
-## Deploy on Vercel
+- Header
+- Loader (відображається під час запитів)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧭 Header
+
+Містить:
+
+- Logo (посилання на Home page)
+- Nav
+- AuthNav (для НЕавторизованих)
+- UserNav (для авторизованих)
+
+На мобільній та планшетній версіях навігація реалізована через бургер-меню.  
+Активна сторінка підсвічується.
+
+---
+
+## 🌍 Публічні сторінки
+
+### 🏠 Home page ("/home")
+
+- Головний заголовок
+- Опис
+- Статичне зображення
+
+---
+
+### 📰 News page ("/news")
+
+Складається з:
+
+- Title (універсальний компонент)
+- SearchField
+- NewsList
+- Pagination (серверна)
+
+Функціонал:
+
+- Пошук по ключовому слову
+- Серверна пагінація
+- Перехід на джерело новини (нова вкладка)
+
+---
+
+### 📢 Notices page ("/notices")
+
+Складається з:
+
+- Title
+- NoticesFilters
+- NoticesList
+- Pagination
+
+Фільтрація:
+
+- Пошук по ключовому слову
+- Категорія
+- Стать
+- Тип улюбленця
+- Локація (react-select)
+- Сортування (популярність / ціна)
+- Reset
+
+Пошук виконується при зміні будь-якого параметру.
+
+---
+
+### 🤝 Our friends ("/friends")
+
+Складається з:
+
+- Title
+- FriendsList
+
+Кожен FriendsItem містить:
+
+- Логотип
+- Назву
+- Контактні дані (з посиланнями)
+- Графік роботи
+
+Адреса відкривається в новій вкладці (мапа).
+
+---
+
+## 🔐 Неавторизований користувач
+
+### 📝 Registration ("/register")
+
+Містить:
+
+- PetBlock
+- Title
+- RegistrationForm
+
+Валідація через react-hook-form + Yup:
+
+- name — required
+- email — pattern
+- password — min 7
+
+Після успішної реєстрації:
+
+- автоматична авторизація
+- redirect на Profile page
+
+---
+
+### 🔑 Login ("/login")
+
+Містить:
+
+- PetBlock
+- Title
+- LoginForm
+
+Валідація:
+
+- email — pattern
+- password — min 7
+
+Після успішного логіну:
+
+- збереження токена
+- redirect на Profile page
+
+---
+
+## 👤 Авторизований користувач
+
+### 👤 Profile page ("/profile")
+
+Складається з:
+
+- UserCard
+- MyNotices
+
+---
+
+### UserCard
+
+Містить:
+
+- EditUserBtn
+- UserBlock
+- PetsBlock
+- LogOutBtn
+
+---
+
+### ✏️ ModalEditUser
+
+Редагування:
+
+- avatar (url)
+- name
+- email
+- phone (+38...)
+
+Валідація через Yup.  
+Після успішного оновлення — оновлення даних без перезавантаження сторінки.
+
+---
+
+### 🐶 PetsBlock
+
+Містить:
+
+- AddPet ("/add-pet")
+- PetsList
+
+PetsItem:
+
+- Зображення
+- Інформація
+- Кнопка видалення
+
+Видалення:
+
+- запит на backend
+- оновлення списку без reload
+
+---
+
+### ❤️ MyNotices
+
+Таби:
+
+- My favorites pets (default)
+- Viewed
+
+Можливість:
+
+- видалити з улюблених
+- переглянути деталі
+
+---
+
+### ➕ Add Pet ("/add-pet")
+
+Містить:
+
+- PetBlock
+- AddPetForm
+
+Валідація:
+
+- title — required
+- name — required
+- imgUrl — pattern
+- species — required
+- birthday — YYYY-MM-DD
+- sex — required
+
+Після успішного створення:
+
+- redirect на Profile
+
+---
+
+## 🧩 Модальні вікна
+
+### ModalApproveAction
+
+- Підтвердження виходу
+- Закриття по:
+  - Cancel
+  - Escape
+  - Backdrop
+  - Кнопці закриття
+- Logout:
+  - Запит на backend
+  - Очистка store + localStorage
+  - Redirect на Home
+
+---
+
+### ModalAttention
+
+- Для НЕавторизованих
+- Посилання на Login / Register
+
+---
+
+### ModalNotice
+
+- Детальна інформація про оголошення
+- Add/Remove from favorites
+- Contact (tel/mailto)
+
+---
+
+## 📦 Архітектурні особливості
+
+- Серверна пагінація
+- Захищені маршрути
+- Універсальні компоненти (Title, SearchField, Pagination, PetBlock)
+- Обробка помилок backend через notification
+- Адаптивна верстка (mobile-first)
+
+---
+
+## 🔗 API
+
+Документація:  
+https://petlove.b.goit.study/api-docs/
+
+---
+
+## 📱 Адаптивність
+
+- Mobile
+- Tablet
+- Desktop
+- Бургер-меню
+- Responsive зображення через Next.js Image
+
+---
+
+## 🧠 Додатково
+
+- Обробка 401/403
+- Глобальний Loader
+- Оптимізація зображень
+- SEO-ready (Next.js)
+
+---
+
+## 📌 Статус
+
+Проєкт реалізує повний цикл:
+
+- реєстрація
+- авторизація
+- робота з оголошеннями
+- управління профілем
+- додавання улюбленців
+- робота з улюбленими оголошеннями
+
+---
+
+✨ PetLove — сучасний SPA застосунок для любителів тварин.
