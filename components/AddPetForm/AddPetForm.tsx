@@ -9,6 +9,10 @@ import toast, { Toaster } from 'react-hot-toast';
 import { addMyPet, AddPetProps } from '@/lib/api/serverApi';
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Controller } from 'react-hook-form';
+import { format, parse } from 'date-fns';
 
 export const addPetSchema = Yup.object({
   title: Yup.string().required('Title is required'),
@@ -58,10 +62,13 @@ export default function AddPetForm() {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors, isSubmitting, isDirty },
-    // watch,
   } = useForm({
     resolver: yupResolver(addPetSchema),
+    defaultValues: {
+      birthday: '',
+    },
   });
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,8 +102,6 @@ export default function AddPetForm() {
       toast.error('Помилка завантаження');
     }
   };
-
-  // const avatarValue = watch('imgURL');
 
   const onSubmit = async (data: FormValues) => {
     const payload = {
@@ -150,7 +155,6 @@ export default function AddPetForm() {
           </label>
           {errors.sex && <p style={{ color: 'red' }}>{errors.sex.message}</p>}
         </div>
-        {/* Avatar preview */}
         {!preview && (
           <div className={css.iconBox}>
             <svg width={34} height={34} className={css.icon}>
@@ -171,11 +175,10 @@ export default function AddPetForm() {
           />
           <input
             {...register('imgURL')}
-            readOnly // Щоб користувач не міг випадково зламати посилання руками
+            readOnly
             className={`${css.urlInput} ${css.input}`}
             placeholder={preview}
           />
-          {/* Кастомна кнопка */}
           <button
             type="button"
             className={css.uploadBtn}
@@ -188,9 +191,6 @@ export default function AddPetForm() {
           </button>
         </div>
         <div className={css.inputsWrapper}>
-          {/* <input {...register('imgURL')} placeholder="Enter URL" className={css.input} />
-          {errors.imgURL && <p style={{ color: 'red' }}>{errors.imgURL.message}</p>} */}
-
           <input {...register('title')} placeholder="Title" className={css.input} />
           {errors.title && <p style={{ color: 'red' }}>{errors.title.message}</p>}
 
@@ -198,10 +198,25 @@ export default function AddPetForm() {
           {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
 
           <label className={css.birthdayLabel}>
-            <input
-              {...register('birthday')}
-              placeholder="xxxx-xx-xx"
-              className={`${css.input} ${css.birthday}`}
+            <Controller
+              control={control}
+              name="birthday"
+              render={({ field }) => (
+                <DatePicker
+                  selected={field.value ? parse(field.value, 'yyyy-MM-dd', new Date()) : null}
+                  onChange={(date: Date | null) => {
+                    const formattedDate = date ? format(date, 'yyyy-MM-dd') : '';
+                    field.onChange(formattedDate);
+                  }}
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="00.00.0000"
+                  className={`${css.input} ${css.birthday}`}
+                  maxDate={new Date()}
+                  showYearDropdown
+                  scrollableYearDropdown
+                  yearDropdownItemNumber={20}
+                />
+              )}
             />
             {errors.birthday && <p style={{ color: 'red' }}>{errors.birthday.message}</p>}
             <svg width={18} height={18} className={css.chevron}>
