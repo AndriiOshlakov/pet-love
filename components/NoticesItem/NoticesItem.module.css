@@ -12,6 +12,10 @@
 
 .img {
     border-radius: 16px;
+    width: 287px;
+    height: 178px;
+    object-fit: cover;
+    display: block;
 }
 
 .box {
@@ -187,6 +191,7 @@
 
     .img {
         width: 315px;
+        height: 178px;
     }
 
     .btn {

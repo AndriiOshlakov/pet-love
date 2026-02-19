@@ -77,10 +77,45 @@
     stroke: #fff;
 }
 
+.uploadBox {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.editForm input.urlInput {
+    width: 161px;
+}
+
+
+.uploadBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 12px;
+    gap: 8px;
+    background-color: #fff4df;
+    stroke: #f6b83d;
+    fill: transparent;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: #262626;
+}
+
 .avatar {
     border-radius: 100px;
     margin: 8px auto 16px;
     display: block;
+    object-fit: cover;
 }
 
 .iconBox {
@@ -209,6 +244,19 @@
 
     .avatar {
         margin-top: -16px;
+    }
+
+    .uploadBox {
+        margin-bottom: 18px;
+    }
+
+    .editForm input.urlInput {
+        width: 278px;
+    }
+
+    .uploadBtn {
+        font-size: 14px;
+        padding: 12px 17px;
     }
 
     .iconBox {

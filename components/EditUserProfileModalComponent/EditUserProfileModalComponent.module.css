@@ -8,6 +8,38 @@
     position: relative;
 }
 
+.uploadBox {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.editForm input.urlInput {
+    width: 161px;
+}
+
+
+.uploadBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 12px;
+    gap: 8px;
+    background-color: #fff4df;
+    stroke: #f6b83d;
+    fill: transparent;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: #262626;
+}
 
 .editForm {
     display: flex;
@@ -28,6 +60,7 @@
 .avatar {
     border-radius: 100px;
     margin-bottom: 2px;
+    object-fit: cover;
 }
 
 .editForm input {
@@ -50,7 +83,6 @@
 .editForm p {
     color: red;
 }
-
 
 .submitBtn {
     display: flex;
@@ -87,6 +119,15 @@
         padding: 50px;
     }
 
+    .editForm input.urlInput {
+        width: 226px;
+    }
+
+    .uploadBtn {
+        font-size: 14px;
+        padding: 12px 17px;
+    }
+
     .title {
         font-size: 18px;
         line-height: 1.3;
@@ -111,5 +152,6 @@
 
     .submitBtn {
         margin-top: 20px;
+        height: 52px;
     }
 }

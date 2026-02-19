@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import { addMyPet, AddPetProps } from '@/lib/api/serverApi';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export const addPetSchema = Yup.object({
@@ -15,11 +15,7 @@ export const addPetSchema = Yup.object({
 
   name: Yup.string().required('Name is required'),
 
-  imgURL: Yup.string()
-    .matches(/^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/, {
-      message: 'Image must be valid URL',
-    })
-    .required(),
+  imgURL: Yup.string().required('Image is required'),
 
   species: Yup.string()
     .oneOf([
@@ -52,23 +48,67 @@ export const addPetSchema = Yup.object({
 type FormValues = Yup.InferType<typeof addPetSchema>;
 
 export default function AddPetForm() {
+  const [preview, setPreview] = useState('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting, isDirty },
-    watch,
+    // watch,
   } = useForm({
     resolver: yupResolver(addPetSchema),
   });
 
-  const avatarValue = watch('imgURL');
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-  const onSubmit = async (data: AddPetProps) => {
+    const localPreview = URL.createObjectURL(file);
+    setPreview(localPreview);
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'my_preset');
+
     try {
-      const res = await addMyPet(data);
+      toast.loading('Завантаження фото...');
+
+      const response = await fetch('https://api.cloudinary.com/v1_1/dntlokfoh/image/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+      const uploadedUrl = result.secure_url;
+
+      setValue('imgURL', uploadedUrl, { shouldDirty: true });
+
+      toast.dismiss();
+      toast.success('Фото завантажено!');
+    } catch (error) {
+      toast.dismiss();
+      toast.error('Помилка завантаження');
+    }
+  };
+
+  // const avatarValue = watch('imgURL');
+
+  const onSubmit = async (data: FormValues) => {
+    const payload = {
+      title: data.title,
+      name: data.name,
+      sex: data.sex,
+      species: data.species,
+      birthday: data.birthday,
+      imgURL: data.imgURL,
+    };
+    try {
+      const res = await addMyPet(payload);
       router.push('/profile');
     } catch (error: any) {
       toast.error(error?.response?.data?.message || 'Failed to update profile');
@@ -111,25 +151,45 @@ export default function AddPetForm() {
           {errors.sex && <p style={{ color: 'red' }}>{errors.sex.message}</p>}
         </div>
         {/* Avatar preview */}
-        {!avatarValue && (
+        {!preview && (
           <div className={css.iconBox}>
             <svg width={34} height={34} className={css.icon}>
               <use href="/symbol-defs.svg#cat-footprint" />
             </svg>
           </div>
         )}
-        {avatarValue && (
-          <Image
-            src={avatarValue}
-            alt="Avatar preview"
-            width={68}
-            height={68}
-            className={css.avatar}
-          />
+        {preview && (
+          <Image src={preview} alt="Avatar preview" width={68} height={68} className={css.avatar} />
         )}
+        <div className={css.uploadBox}>
+          <input
+            type="file"
+            accept="image/*"
+            className={css.hiddenInput}
+            ref={fileInputRef}
+            onChange={handleFileChange}
+          />
+          <input
+            {...register('imgURL')}
+            readOnly // Щоб користувач не міг випадково зламати посилання руками
+            className={`${css.urlInput} ${css.input}`}
+            placeholder={preview}
+          />
+          {/* Кастомна кнопка */}
+          <button
+            type="button"
+            className={css.uploadBtn}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            Upload photo
+            <svg width={18} height={18}>
+              <use href="/symbol-defs.svg#upload-cloud" />
+            </svg>
+          </button>
+        </div>
         <div className={css.inputsWrapper}>
-          <input {...register('imgURL')} placeholder="Enter URL" className={css.input} />
-          {errors.imgURL && <p style={{ color: 'red' }}>{errors.imgURL.message}</p>}
+          {/* <input {...register('imgURL')} placeholder="Enter URL" className={css.input} />
+          {errors.imgURL && <p style={{ color: 'red' }}>{errors.imgURL.message}</p>} */}
 
           <input {...register('title')} placeholder="Title" className={css.input} />
           {errors.title && <p style={{ color: 'red' }}>{errors.title.message}</p>}
@@ -140,7 +200,7 @@ export default function AddPetForm() {
           <label className={css.birthdayLabel}>
             <input
               {...register('birthday')}
-              placeholder="00.00.0000"
+              placeholder="xxxx-xx-xx"
               className={`${css.input} ${css.birthday}`}
             />
             {errors.birthday && <p style={{ color: 'red' }}>{errors.birthday.message}</p>}
