@@ -5,13 +5,13 @@
     padding: 24px;
     max-width: 336px;
     width: 335px;
-    height: 454px;
     background-color: #fff;
     gap: 24px;
 }
 
 .img {
     border-radius: 16px;
+    width: 100%;
 }
 
 .box {
@@ -109,13 +109,8 @@
     .notice {
         max-width: 342px;
         width: 342px;
-        height: 472px;
         padding: 14px;
-    }
-
-    .img {
-        width: 294px;
-        height: 178px;
+        padding-bottom: 24px;
     }
 
     .animal {
@@ -149,12 +144,7 @@
     .notice {
         max-width: 320px;
         width: 320px;
-        height: 422px;
         gap: 24px;
-    }
-
-    .img {
-        width: 315px;
     }
 
 }
